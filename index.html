@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Educativo Fulgencio Aquino | Prepárate para el futuro</title>
+    <style>
+        /* --- VARIABLES DE DISEÑO --- */
+        :root {
+            --bg-principal: #0f172a;
+            --bg-tarjetas: #1e293b;
+            --texto-principal: #f8fafc;
+            --texto-secundario: #94a3b8;
+            --color-acento: #38bdf8; /* Azul brillante */
+            --color-exito: #4ade80;  /* Verde para precios */
+            --color-whatsapp: #25d366; 
+            --fuente: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fuente);
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* --- HEADER / NAVEGACIÓN --- */
+        header {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #334155;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--color-acento);
+            letter-spacing: 0.5px;
+        }
+
+        .menu a {
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+            color: var(--texto-secundario);
+        }
+
+        .menu a:hover {
+            color: var(--color-acento);
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f8fafc, var(--color-acento));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            color: var(--color-acento);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* --- SECCIÓN DE CURSOS --- */
+        .seccion-titulo {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .seccion-titulo::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--color-acento);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .cursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0 60px 0;
+        }
+
+        /* --- TARJETA DE CURSO --- */
+        .curso-card {
+            background-color: var(--bg-tarjetas);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-acento);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.1);
+        }
+
+        .curso-imagen-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            background-color: #0f172a;
+        }
+
+        .curso-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .curso-contenido {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .meta-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .curso-tag {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--color-acento);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tag-duracion {
+            background-color: rgba(248, 250, 252, 0.1);
+            color: var(--texto-principal);
+        }
+
+        .tag-petroleo {
+            background-color: rgba(234, 179, 8, 0.1);
+            color: #eab308;
+        }
+
+        .curso-titulo {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--texto-principal);
+        }
+
+        .curso-descripcion {
+            color: var(--texto-secundario);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .info-pagos {
+            background-color: rgba(15, 23, 42, 0.4);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            border: 1px dashed #334155;
+        }
+
+        .pago-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+
+        .pago-item strong {
+            color: var(--color-exito);
+        }
+
+        .curso-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            border-top: 1px solid #334155;
+        }
+
+        .btn-comprar {
+            background-color: var(--color-acento);
+            color: #0f172a;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-comprar:hover {
+            background-color: #7dd3fc;
+            transform: scale(1.02);
+        }
+
+        /* --- SECCIÓN CONTACTO E INTERFAZ DE UBICACIÓN --- */
+        .contacto-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 60px auto;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contacto-info, .contacto-mapa {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contacto-info h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .contacto-info p {
+            color: var(--texto-secundario);
+            margin-bottom: 25px;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--color-whatsapp);
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 14px 28px;
+            border-radius: 50px;
+            align-self: flex-start;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+            background-color: #22c35e;
+        }
+
+        .icon-ws {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* Interfaz estética de mapa/ubicación */
+        .mapa-estetico {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mapa-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--color-acento);
+            font-weight: bold;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .direccion-texto {
+            color: var(--texto-principal);
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .local-destacado {
+            margin-top: 15px;
+            background-color: rgba(56, 189, 248, 0.05);
+            border-left: 3px solid var(--color-acento);
+            padding: 10px;
+            font-size: 0.95rem;
+            color: var(--texto-secundario);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #020617;
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #1e293b;
+            color: var(--texto-secundario);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .contacto-container { grid-template-columns: 1fr; gap: 30px; padding: 25px; }
+            .btn-whatsapp { width: 100%; justify-content: center; }
+            .hero h1 { font-size: 2.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Fulgencio Aquino</div>
+            <nav class="menu">
+                <a href="#inicio">Inicio</a>
+                <a href="#sabatinos">Cursos Sabatinos</a>
+                <a href="#petrolera">Área Petrolera</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <p>Prepárate para el futuro</p>
+        <h1>Centro Educativo Fulgencio Aquino</h1>
+    </section>
+
+    <main class="contenedor">
+        
+        <!-- ================= SECCIÓN: CURSOS SABATINOS ================= -->
+        <h2 class="seccion-titulo" id="sabatinos">Cursos Sabatinos</h2>
+        <div class="cursos-grid">
+
+            <!-- Farmacia -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Farmacia.jpg" alt="Farmacia" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Salud</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Asistente de Farmacia</h3>
+                    <p class="curso-descripcion">Aprende sobre dispensación de medicamentos, atención al cliente en farmacias, control de inventario y nociones de farmacología básica.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Asistente%20de%20Farmacia" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pres.escolar -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Pres.escolar.jpg" alt="Preescolar" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Educación</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Asistente de Preescolar</h3>
+                    <p class="curso-descripcion">Formación integral en estrategias pedagógicas, cuidado infantil, recreación y desarrollo evolutivo del niño en etapas tempranas.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Asistente%20de%20Preescolar" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enfermería Cuidados del paciente -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Enfermer%C3%ADa%20Cuidados%20del%20paciente.jpg" alt="Enfermería" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Salud</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Enfermería: Cuidados del Paciente</h3>
+                    <p class="curso-descripcion">Capacitación práctica en primeros auxilios, signos vitales, administración de tratamientos autorizados y atención a pacientes críticos o geriátricos.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Enfermer%C3%ADa" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asistente Administrativo Recursos Humanos -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Asistente.%20Administrativo%20Recursos%20Humanos.jpg" alt="Recursos Humanos" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Administración</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Asistente Administrativo y RRHH</h3>
+                    <p class="curso-descripcion">Domina la gestión de nóminas, captación de talento, control administrativo, archivo digital y las leyes laborales vigentes.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Asistente%20Administrativo" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asistente Jurídico -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Asistente%20Jur%C3%ADdico.jpg" alt="Jurídico" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Legal</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Asistente Jurídico</h3>
+                    <p class="curso-descripcion">Redacción de documentos legales, tramitación de expedientes, asistencia en tribunales y fundamentos del derecho administrativo y civil.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Asistente%20Jur%C3%ADdico" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Refrigeración Domestica -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Refrigeraci%C3%B3n%20Domestica.jpg" alt="Refrigeración" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Técnico</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Refrigeración Doméstica</h3>
+                    <p class="curso-descripcion">Curso 100% práctico. Diagnóstico de fallas, mantenimiento preventivo y correctivo, carga de gas y reparación de neveras.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Refrigeraci%C3%B3n" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cejas y Pestañas Técnicos -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Cejas%20y%20Pesta%C3%B1as%20T%C3%A9cnicos.jpg" alt="Cejas y Pestañas" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Estética</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Técnico en Cejas y Pestañas</h3>
+                    <p class="curso-descripcion">Aprende visajismo, depilación con cera/hilo, pigmentación semipermanente, lifting de pestañas naturales y volumen punto a punto.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Cejas%20y%20Pesta%C3%B1as" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- peluquería Básica Completa -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/peluquer%C3%ADa%20B%C3%A1sica%20Completa.jpg" alt="Peluquería" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Estética</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Peluquería Básica Completa</h3>
+                    <p class="curso-descripcion">Iníciate en el mundo del estilismo: técnicas fundamentales de corte, secado, planchado, aplicación de tintes y tratamientos.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Peluquer%C3%ADa" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danzas para niñas -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Danzas%20para%20ni%C3%B1as.jpg" alt="Danza" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Arte</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Danzas para Niñas</h3>
+                    <p class="curso-descripcion">Un espacio para el desarrollo rítmico, expresión corporal y coordinación motriz mediante géneros dancísticos adaptados.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Danzas" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- refuerzos e Inglés -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/refuerzos%20e%20Ingl%C3%A9s.jpg" alt="Refuerzo e Inglés" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag">Académico</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Refuerzo Escolar e Inglés</h3>
+                    <p class="curso-descripcion">Nivelación académica en materias clave junto a una introducción dinámica al idioma inglés para mejorar el desempeño.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20inscribirme%20en%20el%20curso%20de%20Refuerzo%20e%20Ingl%C3%A9s" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= SECCIÓN: ÁREA PETROLERA ================= -->
+        <h2 class="seccion-titulo" id="petrolera">Área Petrolera</h2>
+        <div class="cursos-grid">
+
+            <!-- Operador de Planta -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Operador%20de.Planta.jpg" alt="Operador de Planta" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag tag-petroleo">Industrial</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Operador de Planta</h3>
+                    <p class="curso-descripcion">Control, monitoreo y supervisión de procesos industriales y sistemas de fluidos en instalaciones petroquímicas y de refinación.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20el%20%C3%81rea%20Petrolera:%20Operador%20de%20Planta" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instrumentación industrial -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Instrumentaci%C3%B3n%20industrial.jpg" alt="Instrumentación Industrial" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag tag-petroleo">Técnico Superior</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Instrumentación Industrial</h3>
+                    <p class="curso-descripcion">Manejo, calibración y mantenimiento de sensores, transmisores y sistemas de control automático utilizados en los procesos industriales.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20el%20%C3%81rea%20Petrolera:%20Instrumentaci%C3%B3n%20Industrial" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Espacio confinado -->
+            <div class="curso-card">
+                <div class="curso-imagen-wrapper">
+                    <img src="file:///C:/Users/DELL/Documents/pagina%20de%20cursos/imagenes/Espacio%20confinado.jpg" alt="Espacio Confinado" class="curso-img">
+                </div>
+                <div class="curso-contenido">
+                    <div class="meta-tags">
+                        <span class="curso-tag tag-petroleo">Seguridad SHA</span>
+                        <span class="curso-tag tag-duracion">3 Meses</span>
+                    </div>
+                    <h3 class="curso-titulo">Seguridad en Espacios Confinados</h3>
+                    <p class="curso-descripcion">Normativas de seguridad, análisis de riesgos, atmósferas peligrosas y protocolos de entrada/rescate para trabajos en áreas restringidas.</p>
+                    <div class="info-pagos">
+                        <div class="pago-item">Inscripción: <strong>$5 (BCV)</strong></div>
+                        <div class="pago-item">Mensualidad: <strong>$10 (BCV)</strong></div>
+                    </div>
+                    <div class="curso-footer">
+                        <a href="https://wa.me/584220286286?text=Hola!%20Me%20interesa%20el%20%C3%81rea%20Petrolera:%20Espacios%20Confinados" target="_blank" class="btn-comprar">Inscribirse en el Curso</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= SECCIÓN DE CONTACTO Y UBICACIÓN ================= -->
+        <section class="contacto-container" id="contacto">
+            
+            <div class="contacto-info">
+                <h2>Comunícate con Nosotros</h2>
+                <p>Haz clic en el botón de abajo para chatear directamente por WhatsApp y formalizar tu inscripción de manera rápida.</p>
+                
+                <a href="https://wa.me/584220286286?text=Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20inscripciones%20disponibles." target="_blank" class="btn-whatsapp">
+                    <svg class="icon-ws" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.516 2.266 2.27 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.454L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.843.002-2.63-1.023-5.101-2.886-6.968C16.525 1.907 14.054.88 11.43.88c-5.441 0-9.866 4.412-9.869 9.843-.001 1.748.47 3.452 1.362 4.969l-.397 1.449 1.517-.397zm13.14-5.36c-.295-.148-1.748-.865-2.019-.963-.272-.099-.47-.148-.667.148-.197.296-.766.963-.94 1.16-.173.197-.347.222-.642.074-.295-.148-1.246-.459-2.375-1.464-.877-.782-1.47-1.747-1.642-2.043-.173-.296-.018-.456.13-.603.133-.132.296-.346.444-.519.148-.173.197-.296.296-.494.099-.198.05-.37-.025-.519-.074-.148-.667-1.605-.914-2.197-.24-.579-.48-.5-.667-.51a12.7 12.7 0 0 0-.48-.01c-.148 0-.395.056-.603.284-.207.228-.79.771-.79 1.877 0 1.106.803 2.172.914 2.32.111.148 1.58 2.413 3.828 3.383 2.25.97 2.25.647 2.656.61.406-.036 1.748-.716 1.995-1.407.247-.69.247-1.283.173-1.407-.074-.124-.272-.198-.568-.346z"/>
+                    </svg>
+                    0422-0286286
+                </a>
+            </div>
+
+            <div class="contacto-mapa">
+                <div class="mapa-estetico">
+                    <div class="mapa-header">
+                        <span style="font-size: 1.2rem;"> </span> NUESTRA UBICACIÓN
+                    </div>
+                    <div class="direccion-texto">
+                        Calle 7 antes de Balmore Rodríguez. Diagonal a la farmacia GOLDEN.
+                    </div>
+                    <div class="local-destacado">
+                        <strong>Sede:</strong> El Local, Los Puertos.
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Centro Educativo Fulgencio Aquino. Todos los derechos reservados.</p>
+        <p style="margin-top: 10px; font-size: 0.85rem; color: #64748b;">Inscripciones abiertas - Cupos limitados.</p>
+    </footer>
+
+</body>
+</html>
